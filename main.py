@@ -117,7 +117,6 @@ class JanelaInicial:
                 ft.ElevatedButton("Tabelas", on_click=self.abrir_visualizar_gastos),
                 ft.ElevatedButton("Estatísticas", on_click=self.abrir_visualizar_estatisticas),
                 ft.Container(height=550),  # Add some space before the links
-                ft.TextButton("Jona", on_click=lambda e: self.page.launch_url("https://jonasgueiros.github.io/me/")),
                 ft.TextButton("GitHub", on_click=lambda e: self.page.launch_url("https://github.com/jonasgueiros")),
                 ft.ElevatedButton("Configurações", on_click=self.abrir_config),
             ],

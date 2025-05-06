@@ -2,6 +2,8 @@ import sqlite3
 import flet as ft
 from transformers import pipeline
 
+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
+
 # Set up the Hugging Face Transformers pipeline
 qa_pipeline = pipeline("question-answering", model="distilbert-base-uncased-distilled-squad")
 

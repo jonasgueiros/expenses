@@ -91,9 +91,9 @@ class JanelaStats(ft.UserControl):
 
         cursor = conexao.cursor()
         if empresa_selecionada == "Todas Empresas":
-            cursor.execute("SELECT description, SUM(amount), SUM(paid) FROM expenses GROUP BY description")
+            cursor.execute("SELECT description, SUM(price), SUM(paid) FROM expenses GROUP BY description")
         else:
-            cursor.execute("SELECT category, SUM(amount), SUM(paid) FROM expenses WHERE description = ? GROUP BY category", (empresa_selecionada,))
+            cursor.execute("SELECT category, SUM(price), SUM(paid) FROM expenses WHERE description = ? GROUP BY category", (empresa_selecionada,))
         
         resultado = cursor.fetchall()
 
@@ -143,13 +143,13 @@ class JanelaStats(ft.UserControl):
             if conexao:
                 try:
                     cursor = conexao.cursor()
-                    cursor.execute("SELECT description, SUM(amount), SUM(paid) FROM expenses GROUP BY description")
+                    cursor.execute("SELECT description, SUM(price), SUM(paid) FROM expenses GROUP BY description")
                     resultados = cursor.fetchall()
-                    for description, amount, paid in resultados:
-                        resumo += f"{description}:\n Quantia: R$ {amount:.2f}\n Pago: R$ {paid:.2f}\n Diferença: R$ {amount - paid:.2f}\n"
-                        total_amount += amount
+                    for description, price, paid in resultados:
+                        resumo += f"{description}:\n Valor: R$ {price:.2f}\n Pago: R$ {paid:.2f}\n Diferença: R$ {price - paid:.2f}\n"
+                        total_amount += price
                         total_paid += paid
-                    resumo += f"\nTotal Quantia: R$ {total_amount:.2f}\nTotal Pago: R$ {total_paid:.2f}\nDiferença Total: R$ {total_amount - total_paid:.2f}"
+                    resumo += f"\nTotal Valor: R$ {total_amount:.2f}\nTotal Pago: R$ {total_paid:.2f}\nDiferença Total: R$ {total_amount - total_paid:.2f}"
                 except Exception as e:
                     dialog = ft.AlertDialog(title=ft.Text("Erro"), content=ft.Text(f"Erro ao carregar dados: {e}"))
                     if self.page:
@@ -164,13 +164,13 @@ class JanelaStats(ft.UserControl):
             if conexao:
                 try:
                     cursor = conexao.cursor()
-                    cursor.execute("SELECT category, SUM(amount), SUM(paid) FROM expenses WHERE description = ? GROUP BY category", (empresa_selecionada,))
+                    cursor.execute("SELECT category, SUM(price), SUM(paid) FROM expenses WHERE description = ? GROUP BY category", (empresa_selecionada,))
                     resultados = cursor.fetchall()
-                    for categoria, amount, paid in resultados:
-                        resumo += f"{categoria}:\n Quantia: R$ {amount:.2f}\n Pago: R$ {paid:.2f}\n Diferença: R$ {amount - paid:.2f}\n"
-                        total_amount += amount
+                    for categoria, price, paid in resultados:
+                        resumo += f"{categoria}:\n Valor: R$ {price:.2f}\n Pago: R$ {paid:.2f}\n Diferença: R$ {price - paid:.2f}\n"
+                        total_amount += price
                         total_paid += paid
-                    resumo += f"\nTotal Quantia: R$ {total_amount:.2f}\nTotal Pago: R$ {total_paid:.2f}\nDiferença Total: R$ {total_amount - total_paid:.2f}"
+                    resumo += f"\nTotal Valor: R$ {total_amount:.2f}\nTotal Pago: R$ {total_paid:.2f}\nDiferença Total: R$ {total_amount - total_paid:.2f}"
                 except Exception as e:
                     dialog = ft.AlertDialog(title=ft.Text("Erro"), content=ft.Text(f"Erro ao carregar dados: {e}"))
                     if self.page:

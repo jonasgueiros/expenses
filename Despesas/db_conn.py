@@ -21,6 +21,7 @@ def criar_tabela(conexao):
                                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                                 description TEXT DEFAULT NULL,
                                 amount INTEGER DEFAULT NULL,
+                                price INTEGER DEFAULT NULL,
                                 paid INTEGER DEFAULT NULL,
                                 date TEXT DEFAULT NULL,
                                 prazo TEXT DEFAULT NULL,
